@@ -1,0 +1,64 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: "VT323", "Sligoil", "Helvetica Neue", sans-serif;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  padding: 0;
+  background: linear-gradient(to bottom right, #fff, #000);
+}
+
+.calculadora-grid {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  min-height: 100vh;
+  grid-template-columns: repeat(4, 70px);
+  grid-template-rows: minmax(120px, auto) repeat(5, 50px);
+}
+
+.calculadora-grid > button {
+  cursor: pointer;
+  font-size: 2rem;
+  border: 1px solid white;
+  /* outline: none; */
+  background-color: rgb(4, 0, 255);
+  color: white;
+}
+
+.calculadora-grid > button:hover {
+  background-color: rgb(3, 0, 153);
+}
+
+.span-two {
+  grid-column: span 2;
+}
+
+.output {
+  grid-column: 1/-1;
+  background-color: #fff;
+  color: #000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  flex-direction: column;
+  padding: 10px;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.output .operando-previo {
+  font-size: 1.5rem;
+}
+
+.output .operando-actual {
+  font-size: 3rem;
+}
