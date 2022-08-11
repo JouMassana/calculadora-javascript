@@ -11,10 +11,13 @@ class Calculadora {
     this.operation = undefined;
   }
 
-  delete() {}
+  delete() {
+    this.currentOperand = this.currentOperand.toString().slice(0, -1);
+  }
 
   appendNumber(number) {
     if (number === "," && this.currentOperand.includes(",")) return;
+    if (number === ",") number = ".";
     this.currentOperand = this.currentOperand.toString() + number.toString();
   }
 
@@ -26,11 +29,6 @@ class Calculadora {
     this.operation = operation;
     this.previousOperand = this.currentOperand;
     this.currentOperand = "";
-    this.updateDisplay();
-    if (operation === "x") {
-      this.operation = "*";
-    }
-    console.log(operation);
   }
 
   compute() {
@@ -45,7 +43,7 @@ class Calculadora {
       case "-":
         resultat = prev - current;
         break;
-      case "*":
+      case "x":
         resultat = prev * current;
         break;
       case "÷":
@@ -57,12 +55,35 @@ class Calculadora {
     this.currentOperand = resultat;
     this.operation = undefined;
     this.previousOperand = "";
-    console.log("computed");
+  }
+
+  getDisplayNumber(number) {
+    const stringNumber = number.toString();
+    const integerDigits = parseFloat(stringNumber.split(".")[0]);
+    const decimalDigits = stringNumber.split(".")[1];
+    let integerDisplay;
+    if (isNaN(integerDigits)) {
+      integerDisplay = "";
+    } else {
+      integerDisplay = integerDigits.toLocaleString("es", { maximumFractionDigits: 0 });
+    }
+    if (decimalDigits != null) {
+      return `${integerDisplay},${decimalDigits}`;
+    } else {
+      return integerDisplay;
+    }
+    // const floatNumber = parseFloat(number);
+    // if (isNaN(floatNumber)) return "";
+    // return floatNumber.toLocaleString("es");
   }
 
   updateDisplay() {
-    this.currentOperandTextElement.innerText = this.currentOperand;
-    this.previousOperandTextElement.innerText = this.previousOperand;
+    this.currentOperandTextElement.innerText = this.getDisplayNumber(this.currentOperand);
+    if (this.operation != undefined) {
+      this.previousOperandTextElement.innerText = `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`;
+    } else {
+      this.previousOperandTextElement.innerText = "";
+    }
   }
 }
 const numberButtons = document.querySelectorAll("[data-number]");
@@ -85,10 +106,21 @@ numberButtons.forEach((button) => {
 operationButtons.forEach((button) => {
   button.addEventListener("click", () => {
     calculadora.chooseOperation(button.innerText);
+    calculadora.updateDisplay();
   });
 });
 
 equalsButton.addEventListener("click", (button) => {
   calculadora.compute();
+  calculadora.updateDisplay();
+});
+
+deleteButton.addEventListener("click", (button) => {
+  calculadora.delete();
+  calculadora.updateDisplay();
+});
+
+allClearButton.addEventListener("click", (button) => {
+  calculadora.clear();
   calculadora.updateDisplay();
 });
