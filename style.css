@@ -1,8 +1,13 @@
+@font-face {
+  font-family: "VT323-Regular";
+  src: url("./Font/VT323-Regular.ttf") format("truetype");
+}
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-  font-family: "VT323", "Sligoil", "Helvetica Neue", sans-serif;
+  font-family: "VT323-Regular", "Sligoil", "Helvetica Neue", sans-serif;
 }
 
 html,
