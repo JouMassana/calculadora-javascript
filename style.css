@@ -12,34 +12,34 @@
 
 html,
 body {
-  margin: 0;
   height: 100%;
+  margin: 0;
 }
 
 body {
-  padding: 0;
   background: linear-gradient(to bottom right, #fff, #000);
+  padding: 0;
 }
 
-.calculadora-grid {
-  display: grid;
-  justify-content: center;
+.calculator-grid {
   align-content: center;
-  min-height: 100vh;
+  display: grid;
   grid-template-columns: repeat(4, 70px);
   grid-template-rows: minmax(120px, auto) repeat(5, 50px);
+  justify-content: center;
+  min-height: 100vh;
 }
 
-.calculadora-grid > button {
+.calculator-grid > button {
+  background-color: rgb(4, 0, 255);
+  border: 1px solid white;
+  border-radius: 5px;
+  color: white;
   cursor: pointer;
   font-size: 2rem;
-  border: 1px solid white;
-  /* outline: none; */
-  background-color: rgb(4, 0, 255);
-  color: white;
 }
 
-.calculadora-grid > button:hover {
+.calculator-grid > button:hover {
   background-color: rgb(3, 0, 153);
 }
 
@@ -48,22 +48,24 @@ body {
 }
 
 .output {
-  grid-column: 1/-1;
+  align-items: flex-end;
   background-color: #fff;
+  border-radius: 5px;
   color: #000;
   display: flex;
-  align-items: flex-end;
-  justify-content: space-around;
   flex-direction: column;
+  grid-column: 1/-1;
+  justify-content: space-around;
   padding: 10px;
   word-wrap: break-word;
   word-break: break-all;
 }
 
-.output .operando-previo {
+.output .previous-operand {
   font-size: 1.5rem;
 }
 
-.output .operando-actual {
+.output .actual-operand {
   font-size: 3rem;
 }
+

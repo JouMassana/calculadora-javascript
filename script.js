@@ -1,4 +1,4 @@
-class Calculadora {
+class Calculator {
   constructor(previousOperandTextElement, currentOperandTextElement) {
     this.previousOperandTextElement = previousOperandTextElement;
     this.currentOperandTextElement = currentOperandTextElement;
@@ -16,7 +16,7 @@ class Calculadora {
   }
 
   appendNumber(number) {
-    if (number === "," && this.currentOperand.includes(",")) return;
+    if (number === "," && this.currentOperand.includes(".")) return;
     if (number === ",") number = ".";
     this.currentOperand = this.currentOperand.toString() + number.toString();
   }
@@ -32,27 +32,27 @@ class Calculadora {
   }
 
   compute() {
-    let resultat;
+    let result;
     const prev = parseFloat(this.previousOperand);
     const current = parseFloat(this.currentOperand);
     if (isNaN(prev) || isNaN(current)) return;
     switch (this.operation) {
       case "+":
-        resultat = prev + current;
+        result = prev + current;
         break;
       case "-":
-        resultat = prev - current;
+        result = prev - current;
         break;
       case "x":
-        resultat = prev * current;
+        result = prev * current;
         break;
       case "÷":
-        resultat = prev / current;
+        result = prev / current;
         break;
       default:
         return;
     }
-    this.currentOperand = resultat;
+    this.currentOperand = result;
     this.operation = undefined;
     this.previousOperand = "";
   }
@@ -91,33 +91,33 @@ const allClearButton = document.querySelector("[data-all-clear]");
 const previousOperandTextElement = document.querySelector("[data-previous-operand]");
 const currentOperandTextElement = document.querySelector("[data-current-operand]");
 
-const calculadora = new Calculadora(previousOperandTextElement, currentOperandTextElement);
+const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement);
 
 numberButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    calculadora.appendNumber(button.innerText);
-    calculadora.updateDisplay();
+    calculator.appendNumber(button.innerText);
+    calculator.updateDisplay();
   });
 });
 
 operationButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    calculadora.chooseOperation(button.innerText);
-    calculadora.updateDisplay();
+    calculator.chooseOperation(button.innerText);
+    calculator.updateDisplay();
   });
 });
 
 equalsButton.addEventListener("click", (button) => {
-  calculadora.compute();
-  calculadora.updateDisplay();
+  calculator.compute();
+  calculator.updateDisplay();
 });
 
 deleteButton.addEventListener("click", (button) => {
-  calculadora.delete();
-  calculadora.updateDisplay();
+  calculator.delete();
+  calculator.updateDisplay();
 });
 
 allClearButton.addEventListener("click", (button) => {
-  calculadora.clear();
-  calculadora.updateDisplay();
+  calculator.clear();
+  calculator.updateDisplay();
 });
