@@ -21,7 +21,7 @@ body {
   background: linear-gradient(to bottom right, #fff, #000);
 }
 
-.calculadora-grid {
+.calculator-grid {
   display: grid;
   justify-content: center;
   align-content: center;
@@ -30,7 +30,7 @@ body {
   grid-template-rows: minmax(120px, auto) repeat(5, 50px);
 }
 
-.calculadora-grid > button {
+.calculator-grid > button {
   cursor: pointer;
   font-size: 2rem;
   border: 1px solid white;
@@ -39,7 +39,7 @@ body {
   color: white;
 }
 
-.calculadora-grid > button:hover {
+.calculator-grid > button:hover {
   background-color: rgb(3, 0, 153);
 }
 
@@ -60,10 +60,10 @@ body {
   word-break: break-all;
 }
 
-.output .operando-previo {
+.output .previous-operand {
   font-size: 1.5rem;
 }
 
-.output .operando-actual {
+.output .actual-operand {
   font-size: 3rem;
 }
